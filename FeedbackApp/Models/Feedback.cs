@@ -8,7 +8,7 @@
 
         public int Workload { get; set; }
 
-        public int Workdifficulty{ get; set; }
+        public int Workdifficulty { get; set; }
 
         public int TasksFinished { get; set; }
 

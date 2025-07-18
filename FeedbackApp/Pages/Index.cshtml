@@ -71,13 +71,12 @@
                     Hur nöjd är du med veckans arbetsuppgifter? (1-5)
                 </label>
                 <div class="control">
-                    <input asp-for="Feedback.WorkSatisfaction"
+                    <input class="slider-max-size" asp-for="Feedback.WorkSatisfaction"
                            type="range"
                            min="1"
                            max="5"
                            step="1"
-                           class="slider is-fullwidth is-info"
-                           style="width: 100%; max-width: 25rem;"/>
+                           class="slider is-fullwidth is-info" />
                 </div>
             </div>
             <div class="field">
@@ -121,7 +120,7 @@
 
         <h2 class="title">Info för Veckobrev</h2>
         <div class="container">
-                <div class="table-container">
+            <div class="table-container">
                 <table class="table is-fullwidth is-striped">
                     <thead>
                         <tr>
@@ -147,41 +146,41 @@
 
                 </table>
 
-        <h2 class="title">Övrig Information</h2>
+                <h2 class="title">Övrig Information</h2>
 
-        <table class="table is-fullwidth is-striped">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Datum</th>
-                    <th>Belastning (1-5)</th>
-                    <th>Svårighetsgrad (1-5)</th>
-                    <th>Stress (1-5)</th>
-                    <th>Kommunikation (1-5)</th>
-                    <th>Nöjdhet med arbetsuppgifter (1-5)</th>
-                    <th>Lärande/utbildning (Timmar)</th>
-                    <th>Incidenter/problem (Antal)</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var f in Model.Feedbacks)
-                {
-                    <tr>
-                        <td>@f.FeedbackID</td>
-                        <td class="no-wrapper">@f.Date.ToLocalTime().ToShortDateString()</td>
-                        <td>@f.Workload</td>
-                        <td>@f.Workdifficulty</td>
-                        <td>@f.StressLevel</td>
-                        <td>@f.CooperationLevel</td>
-                        <td>@f.WorkSatisfaction</td>
-                        <td>@f.LearningTime</td>
-                        <td>@f.ProblemAmount</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+                <table class="table is-fullwidth is-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Datum</th>
+                            <th>Belastning (1-5)</th>
+                            <th>Svårighetsgrad (1-5)</th>
+                            <th>Stress (1-5)</th>
+                            <th>Kommunikation (1-5)</th>
+                            <th>Nöjdhet med arbetsuppgifter (1-5)</th>
+                            <th>Lärande/utbildning (Timmar)</th>
+                            <th>Incidenter/problem (Antal)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var f in Model.Feedbacks)
+                        {
+                            <tr>
+                                <td>@f.FeedbackID</td>
+                                <td class="no-wrapper">@f.Date.ToLocalTime().ToShortDateString()</td>
+                                <td>@f.Workload</td>
+                                <td>@f.Workdifficulty</td>
+                                <td>@f.StressLevel</td>
+                                <td>@f.CooperationLevel</td>
+                                <td>@f.WorkSatisfaction</td>
+                                <td>@f.LearningTime</td>
+                                <td>@f.ProblemAmount</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
     </div>
 
     <nav class="pagination is-centered" role="navigation" aria-label="pagination">

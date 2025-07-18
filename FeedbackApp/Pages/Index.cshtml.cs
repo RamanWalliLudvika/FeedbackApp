@@ -18,7 +18,7 @@ public class IndexModel : PageModel
     [BindProperty(SupportsGet = true)]
     public int PageNumber { get; set; } = 1;
 
-    [BindProperty (SupportsGet = true)]
+    [BindProperty(SupportsGet = true)]
     public int PageSize { get; set; } = 10;
 
     public int TotalPages { get; set; }
@@ -46,7 +46,7 @@ public class IndexModel : PageModel
 
     public async Task<IActionResult> OnPostAsync()
     {
-        Console.WriteLine("[POST] OnPostAsync körs");    
+        Console.WriteLine("[POST] OnPostAsync körs");
         _context.Feedbacks.Add(Feedback);
         await _context.SaveChangesAsync();
         return RedirectToPage();
