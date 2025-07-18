@@ -1,0 +1,163 @@
+﻿@page
+@model IndexModel
+
+<section class="section">
+    <div class="container">
+        <h1 class="title">Vecko Feedback</h1>
+
+        <form method="post" class="box">
+
+
+            <div class="field">
+                <label asp-for="Feedback.Workload" class="label">
+                    Välj grad av veckans arbetsbelastning  (1-5)
+                </label>
+                <div class="control">
+                    <input asp-for="Feedback.Workload"
+                           type="range"
+                           min="1"
+                           max="5"
+                           step="1"
+                           class="slider is-fullwidth is-info" />
+                </div>
+            </div>
+
+
+            <div class="field">
+                <label asp-for="Feedback.Workdifficulty" class="label">
+                    Välj svårighetsgrad av veckans arbete (1-5)
+                </label>
+                <div class="control">
+                    <input asp-for="Feedback.Workdifficulty"
+                           type="range"
+                           min="1"
+                           max="5"
+                           step="1"
+                           class="slider is-fullwidth is-info" />
+                </div>
+            </div>
+
+
+
+            <div class="field">
+                <label asp-for="Feedback.StressLevel" class="label">
+                    Vad har du haft för stressnivå? (1-5)
+                </label>
+                <div class="control">
+                    <input asp-for="Feedback.StressLevel"
+                           type="range"
+                           min="1"
+                           max="5"
+                           step="1"
+                           class="slider is-fullwidth is-info" />
+                </div>
+            </div>
+
+            <div class="field">
+                <label asp-for="Feedback.CooperationLevel" class="label">
+                    Hur har samarbetet/kommunikationen med kollegor gått? (1-5)
+                </label>
+                <div class="control">
+                    <input asp-for="Feedback.CooperationLevel"
+                           type="range"
+                           min="1"
+                           max="5"
+                           step="1"
+                           class="slider is-fullwidth is-info" />
+                </div>
+            </div>
+
+
+            <div class="field">
+                <label asp-for="Feedback.WorkSatisfaction" class="label">
+                    Hur nöjd är du med veckans arbetsuppgifter? (1-5)
+                </label>
+                <div class="control">
+                    <input asp-for="Feedback.WorkSatisfaction"
+                           type="range"
+                           min="1"
+                           max="5"
+                           step="1"
+                           class="slider is-fullwidth is-info" />
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Hur mycket tid har du lagt på lärande/utbildning? </label>
+                <div class="control">
+                    <input asp-for="Feedback.LearningTime" class="input" type="number" placeholder="Svara i antal timmar, exempelvis: 1" />
+                </div>
+                <span asp-validation-for="Feedback.LearningTime" class="help is-danger"></span>
+            </div>
+
+            <div class="field">
+                <label class="label">Hur många incidenter/problem/buggar har du stött på? </label>
+                <div class="control">
+                    <input asp-for="Feedback.ProblemAmount" class="input" type="number" placeholder="Svara i antal problem, exempelvis: 5" />
+                </div>
+                <span asp-validation-for="Feedback.ProblemAmount" class="help is-danger"></span>
+            </div>
+
+            <div class="field">
+                <label class="label">Sammanfatta din arbetsvecka</label>
+                <div class="control">
+                    <textarea asp-for="Feedback.WeeklySummary" class="textarea" placeholder="Beskriv kortfattat veckans utmaningar, lösta problem, avslutade projekt, osv..." required></textarea>
+                </div>
+                <span asp-validation-for="Feedback.WeeklySummary" class="help is-danger"></span>
+            </div>
+
+            <div class="field">
+                <label class="label">Antal Avklarade Arbetsuppgifter</label>
+                <div class="control">
+                    <input asp-for="Feedback.TasksFinished" class="input" type="number" placeholder="Svara i antal problem, exempelvis: 5" />
+                </div>
+                <span asp-validation-for="Feedback.TasksFinished" class="help is-danger"></span>
+            </div>
+
+            <div class="control mt-4">
+                <button class="button is-link" type="submit">Submit</button>
+            </div>
+        </form>
+
+        <hr />
+
+        <h2 class="title">Inskickad Feedback</h2>
+        <div class="container">
+                <div class="table-container">
+        <table class="table is-fullwidth is-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Datum</th>
+                    <th>Belastning (1-5)</th>
+                    <th>Svårighetsgrad (1-5)</th>
+                    <th>Stress (1-5)</th>
+                    <th>Kommunikation (1-5)</th>
+                    <th>Nöjdhet med arbetsuppgifter (1-5)</th>
+                    <th>Lärande/utbildning (Timmar)</th>
+                    <th>Incidenter/problem (Antal)</th>
+                    <th>Vecko-sammanfattning</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var f in Model.Feedbacks)
+                {
+                    <tr>
+                        <td>@f.FeedbackID</td>
+                        <td>@f.Date.ToLocalTime().ToShortDateString()</td>
+                        <td>@f.Workload</td>
+                        <td>@f.Workdifficulty</td>
+                        <td>@f.StressLevel</td>
+                        <td>@f.CooperationLevel</td>
+                        <td>@f.WorkSatisfaction</td>
+                        <td>@f.LearningTime</td>
+                        <td>@f.ProblemAmount</td>
+                        <td class="has-text-wrap">@f.WeeklySummary</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        </div>
+    </div>
+    </div>
+</section>
