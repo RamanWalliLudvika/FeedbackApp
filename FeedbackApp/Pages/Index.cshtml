@@ -55,7 +55,7 @@
 
             <div class="field">
                 <label asp-for="Feedback.CooperationLevel" class="label">
-                    Hur har samarbetet/kommunikationen med kollegor gått? (1-5)
+                    Hur har kommunikationen mellan kollegor gått? (1-5)
                 </label>
                 <div class="control">
                     <input asp-for="Feedback.CooperationLevel"
@@ -78,7 +78,8 @@
                            min="1"
                            max="5"
                            step="1"
-                           class="slider is-fullwidth is-info" />
+                           class="slider is-fullwidth is-info"
+                           style="width: 100%; max-width: 25rem;"/>
                 </div>
             </div>
             <div class="field">
@@ -120,9 +121,36 @@
 
         <hr />
 
-        <h2 class="title">Inskickad Feedback</h2>
+        <h2 class="title">Info för Veckobrev</h2>
         <div class="container">
                 <div class="table-container">
+                <table class="table is-fullwidth is-striped">
+                    <thead>
+                        <tr>
+                            <th>Datum</th>
+
+                            <th>Veckosammanfattningar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var f in Model.Feedbacks)
+                        {
+                            <tr>
+                                <td style="white-space: nowrap">
+                                    @f.Date.ToShortDateString()
+                                </td>
+                                <td>
+                                    @f.WeeklySummary
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+        <h2 class="title">Övrig Information</h2>
+
         <table class="table is-fullwidth is-striped">
             <thead>
                 <tr>
@@ -135,7 +163,7 @@
                     <th>Nöjdhet med arbetsuppgifter (1-5)</th>
                     <th>Lärande/utbildning (Timmar)</th>
                     <th>Incidenter/problem (Antal)</th>
-                    <th>Vecko-sammanfattning</th>
+
 
                 </tr>
             </thead>
@@ -144,7 +172,7 @@
                 {
                     <tr>
                         <td>@f.FeedbackID</td>
-                        <td>@f.Date.ToLocalTime().ToShortDateString()</td>
+                        <td style="white-space: nowrap">@f.Date.ToLocalTime().ToShortDateString()</td>
                         <td>@f.Workload</td>
                         <td>@f.Workdifficulty</td>
                         <td>@f.StressLevel</td>
@@ -152,7 +180,6 @@
                         <td>@f.WorkSatisfaction</td>
                         <td>@f.LearningTime</td>
                         <td>@f.ProblemAmount</td>
-                        <td class="has-text-wrap">@f.WeeklySummary</td>
                     </tr>
                 }
             </tbody>
@@ -160,4 +187,33 @@
         </div>
     </div>
     </div>
+
+    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        <a class="pagination-previous @(Model.PageNumber <= 1 ? "is-disabled" : "")"
+           asp-route-pageNumber="@(Model.PageNumber - 1)"
+           asp-route-pageSize="@Model.PageSize"
+           tabindex="@(Model.PageNumber <= 1 ? "-1" : "0")"
+           aria-disabled="@(Model.PageNumber <= 1 ? "true" : "false")">
+            Föregående
+        </a>
+        <a class="pagination-next @(Model.PageNumber >= Model.TotalPages ? "is-disabled" : "")"
+           asp-route-pageNumber="@(Model.PageNumber + 1)"
+           asp-route-pageSize="@Model.PageSize"
+           tabindex="@(Model.PageNumber >= Model.TotalPages ? "-1" : "0")"
+           aria-disabled="@(Model.PageNumber >= Model.TotalPages ? "true" : "false")">
+            Nästa
+        </a>
+        <ul class="pagination-list">
+            @for (int i = 1; i <= Model.TotalPages; i++)
+            {
+                <li>
+                    <a class="pagination-link @(i == Model.PageNumber ? "is-current" : "")"
+                       asp-route-pageNumber="@i"
+                       asp-route-pageSize="@Model.PageSize">
+                        @i
+                    </a>
+                </li>
+            }
+        </ul>
+    </nav>
 </section>

@@ -15,16 +15,32 @@ public class IndexModel : PageModel
         _context = context;
     }
 
+    [BindProperty(SupportsGet = true)]
+    public int PageNumber { get; set; } = 1;
+
+    [BindProperty (SupportsGet = true)]
+    public int PageSize { get; set; } = 10;
+
+    public int TotalPages { get; set; }
+
+
     [BindProperty]
     public Feedback Feedback { get; set; }
 
     public List<Feedback> Feedbacks { get; set; }
 
+
     public async System.Threading.Tasks.Task OnGetAsync()
     {
+        var totalCount = await _context.Feedbacks.CountAsync(); ;
+        TotalPages = (int)Math.Ceiling((double)totalCount / PageSize);
+
         Feedbacks = await _context.Feedbacks
             .OrderByDescending(f => f.Date)
+            .Skip((PageNumber - 1) * PageSize)
+            .Take(PageSize)
             .ToListAsync();
+
     }
 
 
