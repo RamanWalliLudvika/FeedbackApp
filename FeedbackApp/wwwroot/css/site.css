@@ -20,3 +20,12 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.no-wrapper {
+    white-space: nowrap;
+}
+
+.slider-max-size {
+    width: 100%;
+    max-width: 25rem;
+}

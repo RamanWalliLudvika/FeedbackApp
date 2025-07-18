@@ -7,13 +7,12 @@
 
         <form method="post" class="box">
 
-
             <div class="field">
                 <label asp-for="Feedback.Workload" class="label">
                     Välj grad av veckans arbetsbelastning  (1-5)
                 </label>
                 <div class="control">
-                    <input asp-for="Feedback.Workload"
+                    <input class="slider-max-size" asp-for="Feedback.Workload"
                            type="range"
                            min="1"
                            max="5"
@@ -28,7 +27,7 @@
                     Välj svårighetsgrad av veckans arbete (1-5)
                 </label>
                 <div class="control">
-                    <input asp-for="Feedback.Workdifficulty"
+                    <input class="slider-max-size" asp-for="Feedback.Workdifficulty"
                            type="range"
                            min="1"
                            max="5"
@@ -44,12 +43,11 @@
                     Vad har du haft för stressnivå? (1-5)
                 </label>
                 <div class="control">
-                    <input asp-for="Feedback.StressLevel"
+                    <input class="slider-max-size" asp-for="Feedback.StressLevel"
                            type="range"
                            min="1"
                            max="5"
-                           step="1"
-                           class="slider is-fullwidth is-info" />
+                           step="1" />
                 </div>
             </div>
 
@@ -58,7 +56,7 @@
                     Hur har kommunikationen mellan kollegor gått? (1-5)
                 </label>
                 <div class="control">
-                    <input asp-for="Feedback.CooperationLevel"
+                    <input class="slider-max-size" asp-for="Feedback.CooperationLevel"
                            type="range"
                            min="1"
                            max="5"
@@ -69,7 +67,7 @@
 
 
             <div class="field">
-                <label asp-for="Feedback.WorkSatisfaction" class="label">
+                <label class="slider-max-size" asp-for="Feedback.WorkSatisfaction" class="label">
                     Hur nöjd är du med veckans arbetsuppgifter? (1-5)
                 </label>
                 <div class="control">
@@ -136,7 +134,7 @@
                         @foreach (var f in Model.Feedbacks)
                         {
                             <tr>
-                                <td style="white-space: nowrap">
+                                <td class="no-wrapper">
                                     @f.Date.ToShortDateString()
                                 </td>
                                 <td>
@@ -163,8 +161,6 @@
                     <th>Nöjdhet med arbetsuppgifter (1-5)</th>
                     <th>Lärande/utbildning (Timmar)</th>
                     <th>Incidenter/problem (Antal)</th>
-
-
                 </tr>
             </thead>
             <tbody>
@@ -172,7 +168,7 @@
                 {
                     <tr>
                         <td>@f.FeedbackID</td>
-                        <td style="white-space: nowrap">@f.Date.ToLocalTime().ToShortDateString()</td>
+                        <td class="no-wrapper">@f.Date.ToLocalTime().ToShortDateString()</td>
                         <td>@f.Workload</td>
                         <td>@f.Workdifficulty</td>
                         <td>@f.StressLevel</td>
