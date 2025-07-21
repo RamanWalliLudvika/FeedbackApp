@@ -2,11 +2,12 @@ html {
   font-size: 14px;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+.navbar-icon {
+    width: 8rem; 
+    height: 8rem;
 }
+
+
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
@@ -28,4 +29,18 @@ body {
 .slider-max-size {
     width: 100%;
     max-width: 25rem;
+}
+
+@media (max-width: 768px) {
+    .navbar-icon {
+        width: 6rem; 
+        height: 6rem;
+    }
+}
+
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
 }

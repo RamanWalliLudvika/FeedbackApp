@@ -183,6 +183,14 @@
         </div>
     </div>
 
+@*  ***KNAPP FÖR ATT RENSA ALL DATA UR FEEDBACK TABELLEN***   
+    <form method="post">
+        <button type="submit" asp-page-handler="ClearData" class="button is-danger">
+            Rensa all feedback
+        </button>
+    </form> *@
+
+
     <nav class="pagination is-centered" role="navigation" aria-label="pagination">
         <a class="pagination-previous @(Model.PageNumber <= 1 ? "is-disabled" : "")"
            asp-route-pageNumber="@(Model.PageNumber - 1)"

@@ -51,4 +51,13 @@ public class IndexModel : PageModel
         await _context.SaveChangesAsync();
         return RedirectToPage();
     }
+    
+    //***METOD FOR ATT RENSA ALL DATA I FEEDBACKS TABELLEN***
+    //public async Task<IActionResult> OnPostClearDataAsync()
+    //{
+    //    await _context.Database.ExecuteSqlRawAsync("DELETE FROM Feedbacks");
+    //    await _context.Database.ExecuteSqlRawAsync("DELETE FROM sqlite_sequence WHERE name = 'Feedbacks'");
+    //    return RedirectToPage();
+    //}
+
 }
