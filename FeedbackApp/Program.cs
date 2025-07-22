@@ -4,10 +4,12 @@ using FeedbackApp.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var connstring = builder.Configuration.GetConnectionString("DefaultConnection");
+
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite("Data Source=feedback.db"));
+    options.UseSqlite(connstring));
 
 
 
