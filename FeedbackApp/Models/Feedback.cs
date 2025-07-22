@@ -24,9 +24,8 @@
 
         public string? WeeklySummary { get; set; }
         public DateTime Date { get; set; } = DateTime.Now;
-        public User? User { get; set; }
 
-        public ICollection<Task>? Tasks { get; set; }
+
 
 
     }
