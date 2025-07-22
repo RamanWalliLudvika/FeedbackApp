@@ -30,7 +30,7 @@ public class IndexModel : PageModel
     public List<Feedback> Feedbacks { get; set; }
 
 
-    public async System.Threading.Tasks.Task OnGetAsync()
+    public async Task OnGetAsync()
     {
         var totalCount = await _context.Feedbacks.CountAsync(); ;
         TotalPages = (int)Math.Ceiling((double)totalCount / PageSize);
