@@ -1,0 +1,59 @@
+﻿@page
+@model FeedbackApp.Pages.AnalysisModel
+@{  
+
+    <section>
+        <h1 class="title">Veckobrev Analys</h1>
+        <p>Här kan du se en sammanställning av de senaste veckobrevssvaren.</p>
+    
+    </section>
+
+    <canvas id="feedbackChart" width="500" height="350"></canvas>
+
+    <script>
+        const ctx = document.getElementById('feedbackChart').getContext('2d');
+        const feedbackChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [
+                    'Arbetsbelastning',
+                    'Svårighetsgrad',
+                    'Avklarade uppgifter',
+                    'Stress',
+                    'Samarbete',
+                    'Nöjdhet',
+                    'Tid på lärande',
+                    'Problem/Incidenter'
+                ],
+                datasets: [{
+                    label: 'Genomsnitt av Veckobrevsvärden',
+                    data: [
+                        @Model.AvgWorkload,
+                        @Model.AvgWorkDifficulty,
+                        @Model.AvgTasksFinished,
+                        @Model.AvgStressLevel,
+                        @Model.AvgCooperationLevel,
+                        @Model.AvgWorkSatisfaction,
+                        @Model.AvgLearningTime,
+                        @Model.TotalProblems
+                    ],
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            precision: 1
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+    
+}
